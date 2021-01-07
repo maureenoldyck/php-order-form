@@ -11,14 +11,19 @@ error_reporting(E_ALL);
 
 // We are going to use session variables so we need to enable sessions
 session_start();
-
+$_SESSION['email'] = "";
+$_SESSION['street'] = "";
+$_SESSION['streetnumber'] = "";
+$_SESSION['city'] = "";
+$_SESSION['zipcode'] = "";
 
 // Global variables 
 $totalValue = 0;
 
 
 // Use this function when you need to need an overview of these variables
-function whatIsHappening() {
+function whatIsHappening()
+{
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
     echo '<h2>$_POST</h2>';
@@ -41,7 +46,7 @@ $products = [
     ['name' => 'Air from the Bahamas', 'price' => 50],
     ['name' => 'Air from Ninove', 'price' => 2.5],
     ['name' => 'Smoke', 'price' => 2.5],
-]; 
+];
 
 
 // TODO: Check out the possibilities of the PHP session and cookies.
@@ -56,26 +61,33 @@ $products = [
 
 if (isset($_POST['submit'])) {
 
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['street'] = $_POST['street'];
+    $_SESSION['streetnumber'] = $_POST['streetnumber'];
+    $_SESSION['city'] = $_POST['city'];
+    $_SESSION['zipcode'] = $_POST['zipcode'];
+
     // Validation required fields
     if (!empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && !empty($_POST['email']) && isset($_POST['products'])) {
-       
 
         $zipcode = $_POST['zipcode'];
         $regexNumbersOnly = "/^[0-9]*$/";
-        $email = $_POST["email"];
-  
+        $email = $_POST['email'];
+
         // Validate zipcode
         if (!preg_match($regexNumbersOnly, $zipcode)) {
 
-           echo '<div class="alert alert-warning" role="alert"> Please enter a valid zipcode! (Only numbers allowed)  </div>';
+            $_SESSION['zipcode'] = "";
+            echo '<div class="alert alert-warning" role="alert"> Please enter a valid zipcode! (Only numbers allowed)  </div>';
 
-        // Validate email
+            // Validate email
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
+            $_SESSION['email'] = "";
             echo '<div class="alert alert-warning" role="alert"> Invalid email format, please enter a valid email. </div>';
 
-        // When everthing is filled in correct
-        } else { 
+            // When everthing is filled in correct
+        } else {
 
             //Order confirmation 
 
@@ -87,19 +99,18 @@ if (isset($_POST['submit'])) {
             }
 
             echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'] . "</p> </div>";
+        }
 
-        } 
-
-    // Error when user didn't select any products
-    }  else if ( !isset($_POST['products'])) {
+        // Error when user didn't select any products
+    } else if (!isset($_POST['products'])) {
 
         echo '<div class="alert alert-warning" role="alert"> Please select the products you want to buy! </div>';
 
-    // Error when fields are not filled in
-    }   else {
+        // Error when fields are not filled in
+    } else {
 
         echo '<div class="alert alert-warning" role="alert"> Please fill in all required fields!  </div>';
-    } 
+    }
 }
 
 
