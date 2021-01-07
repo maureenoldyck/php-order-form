@@ -17,8 +17,6 @@ session_start();
 $totalValue = 0;
 
 
-
-
 // Use this function when you need to need an overview of these variables
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
@@ -45,45 +43,47 @@ $products = [
     ['name' => 'Smoke', 'price' => 2.5],
 ]; 
 
-/*
-$products = [
-    ['name' => 'Boyfriend Pillow - XL', 'price' => 25],
-    ['name' => 'Boyfriend Pillow - M', 'price' => 20],
-    ['name' => 'Boyfriend Pillow - S', 'price' => 15],
-    ['name' => 'Girlfriend Pillow - XL', 'price' => 25],
-    ['name' => 'Girlfriend Pillow - M', 'price' => 20],
-    ['name' => 'Girlfriend Pillow - S', 'price' => 15],
-    ['name' => 'Genderqueer Pillow - XL', 'price' => 25],
-    ['name' => 'Genderqueer Pillow - M', 'price' => 20],
-    ['name' => 'Genderqueer Pillow - S', 'price' => 15],
-    ['name' => 'Big Banana Pillow - XL', 'price' => 25],
-];
-*/
-
-
+// TODO: Fix errors
 // foreach ($_POST['products'] as $i => $product) {
 //     $totalValue += ($products[$i]['price']);
 // }
 
+
+// TODO: If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
+
 if (isset($_POST['submit'])) {
 
     // Validation required fields
-    if (!empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && !empty($_POST['email'])) {
+    if (!empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && !empty($_POST['email']) && isset($_POST['products'])) {
        
-        //Order confirmation 
-        echo "Thank you for your order!";
+
+        $zipcode = $_POST['zipcode'];
+        $regexNumbersOnly = "/^[0-9]*$/";
+
+        if (!preg_match($regexNumbersOnly, $zipcode)) {
+
+            echo "Please enter a valid zipcode! (Only numbers allowed)";
+
+        } else { 
+
+            //Order confirmation 
+            echo "Thank you for your order!";
     
-        echo " <h3> Order confirmtation </h3> You've ordered: </br>";
+            echo " <h3> Order confirmtation </h3> You've ordered: </br>";
 
-        foreach ($_POST['products'] as $i => $product) {
-            echo $products[$i]['name'] . "</br>";
-        }
+            foreach ($_POST['products'] as $i => $product) {
+                echo $products[$i]['name'] . "</br>";
+            }
 
-        echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'];
-    } else if ($_POST['products'] == NULL) {
+            echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'];
+    
+        } 
+
+    }  else if ( !isset($_POST['products'])) {
 
         echo "Please select the products you want to buy!";
-    }  else {
+
+    }   else {
 
         echo "Please fill in all required fields!";
     } 
@@ -91,10 +91,7 @@ if (isset($_POST['submit'])) {
 
 
 
-// $zipcode = $_POST['zipcode'];
-// $regexNumbersOnly = "^[0-9]*$";
 
-// preg_match($zipcode, $regexNumbersOnly);
 
 
 
