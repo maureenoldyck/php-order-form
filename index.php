@@ -49,6 +49,10 @@ $products = [
 // TODO: When using cookies on a live site, check any legal requirements.
 // TODO: If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
 // TODO: Refactor in seperate functions
+// TODO: Read about get variables and what you can do with it.
+// TODO: Find commented navigation and activate it. Tweak the content for your own store.
+// TODO: Make a second category of products, and provide a new array for this info.
+// TODO: The navigation should work as a toggle to switch between the two categories of products.
 
 if (isset($_POST['submit'])) {
 
@@ -60,20 +64,22 @@ if (isset($_POST['submit'])) {
         $regexNumbersOnly = "/^[0-9]*$/";
         $email = $_POST["email"];
   
-
+        // Validate zipcode
         if (!preg_match($regexNumbersOnly, $zipcode)) {
 
            echo '<div class="alert alert-warning" role="alert"> Please enter a valid zipcode! (Only numbers allowed)  </div>';
 
+        // Validate email
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
             echo '<div class="alert alert-warning" role="alert"> Invalid email format, please enter a valid email. </div>';
 
+        // When everthing is filled in correct
         } else { 
 
             //Order confirmation 
 
-            echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <h4 class="alert-heading"> Order confirmtation </h4> You\'ve ordered: </br> <p>';
+            echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <hr> <h4 class="alert-heading"> Order confirmtation </h4> You\'ve ordered: </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
                 echo $products[$i]['name'] . "</br>";
@@ -82,13 +88,14 @@ if (isset($_POST['submit'])) {
 
             echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'] . "</p> </div>";
 
-
         } 
 
+    // Error when user didn't select any products
     }  else if ( !isset($_POST['products'])) {
 
         echo '<div class="alert alert-warning" role="alert"> Please select the products you want to buy! </div>';
 
+    // Error when fields are not filled in
     }   else {
 
         echo '<div class="alert alert-warning" role="alert"> Please fill in all required fields!  </div>';
