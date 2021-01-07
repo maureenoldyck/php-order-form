@@ -59,10 +59,16 @@ if (isset($_POST['submit'])) {
 
         $zipcode = $_POST['zipcode'];
         $regexNumbersOnly = "/^[0-9]*$/";
+        $email = $_POST["email"];
+  
 
         if (!preg_match($regexNumbersOnly, $zipcode)) {
 
             echo "Please enter a valid zipcode! (Only numbers allowed)";
+
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+            echo  "Invalid email format, please enter a valid email.";
 
         } else { 
 
