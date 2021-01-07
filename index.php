@@ -43,12 +43,10 @@ $products = [
     ['name' => 'Smoke', 'price' => 2.5],
 ]; 
 
-// TODO: Fix errors
-// foreach ($_POST['products'] as $i => $product) {
-//     $totalValue += ($products[$i]['price']);
-// }
 
-
+// TODO: Check out the possibilities of the PHP session and cookies.
+// TODO: We want to prefill the address (after the first usage), as long as the browser isn't closed. Which of these techniques is the better choice here?
+// TODO: When using cookies on a live site, check any legal requirements.
 // TODO: If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
 // TODO: Refactor in seperate functions
 
@@ -79,10 +77,12 @@ if (isset($_POST['submit'])) {
 
             foreach ($_POST['products'] as $i => $product) {
                 echo $products[$i]['name'] . "</br>";
+                $totalValue += ($products[$i]['price']);
             }
 
             echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'] . "</p> </div>";
-    
+
+
         } 
 
     }  else if ( !isset($_POST['products'])) {
