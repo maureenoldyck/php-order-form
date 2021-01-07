@@ -50,6 +50,7 @@ $products = [
 
 
 // TODO: If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
+// TODO: Refactor in seperate functions
 
 if (isset($_POST['submit'])) {
 
@@ -64,16 +65,17 @@ if (isset($_POST['submit'])) {
 
         if (!preg_match($regexNumbersOnly, $zipcode)) {
 
-            echo "Please enter a valid zipcode! (Only numbers allowed)";
+           echo '<div class="alert alert-warning" role="alert"> Please enter a valid zipcode! (Only numbers allowed)  </div>';
 
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-            echo  "Invalid email format, please enter a valid email.";
+            echo '<div class="alert alert-warning" role="alert"> Invalid email format, please enter a valid email. </div>';
 
         } else { 
 
             //Order confirmation 
-            echo "Thank you for your order!";
+
+            echo '<div class="alert alert-secondary" role="alert"> Thank you for your order! </div>';
     
             echo " <h3> Order confirmtation </h3> You've ordered: </br>";
 
@@ -87,18 +89,13 @@ if (isset($_POST['submit'])) {
 
     }  else if ( !isset($_POST['products'])) {
 
-        echo "Please select the products you want to buy!";
+        echo '<div class="alert alert-warning" role="alert"> Please select the products you want to buy! </div>';
 
     }   else {
 
-        echo "Please fill in all required fields!";
+        echo '<div class="alert alert-warning" role="alert"> Please fill in all required fields!  </div>';
     } 
 }
-
-
-
-
-
 
 
 
