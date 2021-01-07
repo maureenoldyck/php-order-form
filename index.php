@@ -75,15 +75,13 @@ if (isset($_POST['submit'])) {
 
             //Order confirmation 
 
-            echo '<div class="alert alert-secondary" role="alert"> Thank you for your order! </div>';
-    
-            echo " <h3> Order confirmtation </h3> You've ordered: </br>";
+            echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <h4 class="alert-heading"> Order confirmtation </h4> You\'ve ordered: </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
                 echo $products[$i]['name'] . "</br>";
             }
 
-            echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'];
+            echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'] . "</p> </div>";
     
         } 
 

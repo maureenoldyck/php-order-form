@@ -81,6 +81,9 @@
     footer {
         text-align: center;
     }
+    .alert {
+        text-align: center;
+    }
 </style>
 </body>
 </html>
