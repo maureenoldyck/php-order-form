@@ -5,9 +5,19 @@
 
 // This line makes PHP behave in a more strict way
 declare(strict_types=1);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 // We are going to use session variables so we need to enable sessions
 session_start();
+
+
+// Global variables 
+$totalValue = 0;
+
+
+
 
 // Use this function when you need to need an overview of these variables
 function whatIsHappening() {
@@ -21,7 +31,7 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
-// TODO: provide some products (you may overwrite the example)
+
 $products = [
     ['name' => 'Healthy Mountain Air', 'price' => 25],
     ['name' => 'Healthy Forest Air', 'price' => 20],
@@ -50,6 +60,44 @@ $products = [
 ];
 */
 
-$totalValue = 0;
+
+// foreach ($_POST['products'] as $i => $product) {
+//     $totalValue += ($products[$i]['price']);
+// }
+
+if (isset($_POST['submit'])) {
+
+    // Validation required fields
+    if (!empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && !empty($_POST['email'])) {
+       
+        //Order confirmation 
+        echo "Thank you for your order!";
+    
+        echo " <h3> Order confirmtation </h3> You've ordered: </br>";
+
+        foreach ($_POST['products'] as $i => $product) {
+            echo $products[$i]['name'] . "</br>";
+        }
+
+        echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'];
+    } else if ($_POST['products'] == NULL) {
+
+        echo "Please select the products you want to buy!";
+    }  else {
+
+        echo "Please fill in all required fields!";
+    } 
+}
+
+
+
+// $zipcode = $_POST['zipcode'];
+// $regexNumbersOnly = "^[0-9]*$";
+
+// preg_match($zipcode, $regexNumbersOnly);
+
+
+
+
 
 require 'form-view.php';
