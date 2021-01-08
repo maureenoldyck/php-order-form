@@ -52,7 +52,6 @@ $products = [
 // TODO: Check out the possibilities of the PHP session and cookies.
 // TODO: We want to prefill the address (after the first usage), as long as the browser isn't closed. Which of these techniques is the better choice here?
 // TODO: When using cookies on a live site, check any legal requirements.
-// TODO: If the form was not valid, show the previous values in the form so that the user doesn't have to retype everything.
 // TODO: Refactor in seperate functions
 // TODO: Read about get variables and what you can do with it.
 // TODO: Find commented navigation and activate it. Tweak the content for your own store.
@@ -98,7 +97,7 @@ if (isset($_POST['submit'])) {
                 $totalValue += ($products[$i]['price']);
             }
 
-            echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . " " . $_POST['city'] . " " .  $_POST['zipcode'] . "</p> </div>";
+            echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . ", " . $_POST['city'] . " " .  $_POST['zipcode'] . "</p> </div>";
         }
 
         // Error when user didn't select any products
