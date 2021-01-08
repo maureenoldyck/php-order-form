@@ -76,7 +76,7 @@
         <button name="submit" type="submit" class="btn btn-primary mt-3">Order!</button>
     </form>
 
-    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in air.</footer>
+    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in Bottled Up.</footer>
 </div>
 
 <style>

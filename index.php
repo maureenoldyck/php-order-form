@@ -13,7 +13,6 @@ error_reporting(E_ALL);
 session_set_cookie_params(0);
 session_start();
 
-
 // Global variables 
 $totalValue = 0;
 
@@ -31,12 +30,9 @@ if ($_SESSION) {
     $zipcode = "";
 }
 
-
-
 // Use this function when you need to need an overview of these variables
 function whatIsHappening()
 {
-
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
     echo '<h2>$_POST</h2>';
@@ -47,7 +43,8 @@ function whatIsHappening()
     var_dump($_SESSION);
 }
 
-if ($_GET['air'] == 0 ) {
+// Toggle to different products
+if (empty($_GET) || $_GET['air'] == 0) {
     $products = [
         ['name' => 'Healthy Mountain Air', 'price' => 25],
         ['name' => 'Healthy Forest Air', 'price' => 20],
@@ -60,22 +57,24 @@ if ($_GET['air'] == 0 ) {
         ['name' => 'Air from Ninove', 'price' => 2.5],
         ['name' => 'Smoke', 'price' => 2.5],
     ];
-} else $products = [
-    ['name' => 'Healthy Mountain Water', 'price' => 25],
-    ['name' => 'Healthy Forest Water', 'price' => 20],
-    ['name' => 'Healthy Ocean Water', 'price' => 15],
-    ['name' => 'Mysterious Water', 'price' => 22.5],
-    ['name' => 'Rain Water', 'price' => 8.5],
-    ['name' => 'The Water of a Sunny Day', 'price' => 20],
-    ['name' => 'Water from the North Sea', 'price' => 5.5],
-    ['name' => 'Water from the Bahamas', 'price' => 50],
-    ['name' => 'Water from Ninove', 'price' => 2.5],
-    ['name' => 'Polluted water', 'price' => 2.5],
-];
+} else if (($_GET['air']) == 1) {
+    $products = [
+        ['name' => 'Healthy Mountain Water', 'price' => 25],
+        ['name' => 'Healthy Forest Water', 'price' => 20],
+        ['name' => 'Healthy Ocean Water', 'price' => 15],
+        ['name' => 'Mysterious Water', 'price' => 22.5],
+        ['name' => 'Rain Water', 'price' => 8.5],
+        ['name' => 'The Water of a Sunny Day', 'price' => 20],
+        ['name' => 'Water from the North Sea', 'price' => 5.5],
+        ['name' => 'Water from the Bahamas', 'price' => 50],
+        ['name' => 'Water from Ninove', 'price' => 2.5],
+        ['name' => 'Polluted water', 'price' => 2.5],
+    ];
+} 
 
 
 // TODO: Refactor in seperate functions
-// TODO: Save totalValue in browser
+// TODO: Save totalValue as cookie
 
 if (isset($_POST['submit'])) {
 
@@ -112,7 +111,7 @@ if (isset($_POST['submit'])) {
             echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <hr> <h4 class="alert-heading"> Order confirmtation </h4> You\'ve ordered: </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
-                echo $products[$i]['name'] . "</br>";
+                echo $products[$i]['name'] . '</br>';
                 $totalValue += ($products[$i]['price']);
             }
 
