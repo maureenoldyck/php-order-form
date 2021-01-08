@@ -14,14 +14,14 @@
 <body>
 <?php // Navigation for when you need it ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="#">Air in a Bottle</a>
+<a class="navbar-brand" href="">Bottled Up</a>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" href="">Order Air</a>
+            <a class="nav-link active" href="?air=0">Order Air in a Bottle</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" href="?food=0">Order drinks</a>
-        </li> -->
+        <li class="nav-item">
+            <a class="nav-link" href="?air=1">Order Water in a Bottle</a>
+        </li>
     </ul>
 </nav>
 <div class="container">

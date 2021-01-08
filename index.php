@@ -15,9 +15,7 @@ session_start();
 
 
 // Global variables 
-
 $totalValue = 0;
-
 
 if ($_SESSION) {
     $email = $_SESSION['email'];
@@ -49,29 +47,39 @@ function whatIsHappening()
     var_dump($_SESSION);
 }
 
-
-$products = [
-    ['name' => 'Healthy Mountain Air', 'price' => 25],
-    ['name' => 'Healthy Forest Air', 'price' => 20],
-    ['name' => 'Healthy Ocean Air', 'price' => 15],
-    ['name' => 'Mysterious Air', 'price' => 22.5],
-    ['name' => 'The Air after it Rained', 'price' => 8.5],
-    ['name' => 'The Air of a Sunny Day', 'price' => 20],
-    ['name' => 'Air from the North Sea', 'price' => 5.5],
-    ['name' => 'Air from the Bahamas', 'price' => 50],
-    ['name' => 'Air from Ninove', 'price' => 2.5],
-    ['name' => 'Smoke', 'price' => 2.5],
+if ($_GET['air'] == 0 ) {
+    $products = [
+        ['name' => 'Healthy Mountain Air', 'price' => 25],
+        ['name' => 'Healthy Forest Air', 'price' => 20],
+        ['name' => 'Healthy Ocean Air', 'price' => 15],
+        ['name' => 'Mysterious Air', 'price' => 22.5],
+        ['name' => 'The Air after it Rained', 'price' => 8.5],
+        ['name' => 'The Air of a Sunny Day', 'price' => 20],
+        ['name' => 'Air from the North Sea', 'price' => 5.5],
+        ['name' => 'Air from the Bahamas', 'price' => 50],
+        ['name' => 'Air from Ninove', 'price' => 2.5],
+        ['name' => 'Smoke', 'price' => 2.5],
+    ];
+} else $products = [
+    ['name' => 'Healthy Mountain Water', 'price' => 25],
+    ['name' => 'Healthy Forest Water', 'price' => 20],
+    ['name' => 'Healthy Ocean Water', 'price' => 15],
+    ['name' => 'Mysterious Water', 'price' => 22.5],
+    ['name' => 'Rain Water', 'price' => 8.5],
+    ['name' => 'The Water of a Sunny Day', 'price' => 20],
+    ['name' => 'Water from the North Sea', 'price' => 5.5],
+    ['name' => 'Water from the Bahamas', 'price' => 50],
+    ['name' => 'Water from Ninove', 'price' => 2.5],
+    ['name' => 'Polluted water', 'price' => 2.5],
 ];
 
 
-// TODO: Check out the possibilities of the PHP session and cookies.
-// TODO: We want to prefill the address (after the first usage), as long as the browser isn't closed. Which of these techniques is the better choice here?
-// TODO: When using cookies on a live site, check any legal requirements.
 // TODO: Refactor in seperate functions
 // TODO: Read about get variables and what you can do with it.
 // TODO: Find commented navigation and activate it. Tweak the content for your own store.
 // TODO: Make a second category of products, and provide a new array for this info.
 // TODO: The navigation should work as a toggle to switch between the two categories of products.
+// TODO: Save totalValue in browser
 
 if (isset($_POST['submit'])) {
 
