@@ -10,20 +10,35 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 // We are going to use session variables so we need to enable sessions
+session_set_cookie_params(0);
 session_start();
-$_SESSION['email'] = "";
-$_SESSION['street'] = "";
-$_SESSION['streetnumber'] = "";
-$_SESSION['city'] = "";
-$_SESSION['zipcode'] = "";
+
 
 // Global variables 
+
 $totalValue = 0;
+
+
+if ($_SESSION) {
+    $email = $_SESSION['email'];
+    $street = $_SESSION['street'];
+    $streetnumber = $_SESSION['streetnumber'];
+    $city = $_SESSION['city'];
+    $zipcode = $_SESSION['zipcode'];
+} else {
+    $email = "";
+    $street = "";
+    $streetnumber = "";
+    $city = "";
+    $zipcode = "";
+}
+
 
 
 // Use this function when you need to need an overview of these variables
 function whatIsHappening()
 {
+
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
     echo '<h2>$_POST</h2>';
@@ -60,11 +75,11 @@ $products = [
 
 if (isset($_POST['submit'])) {
 
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['street'] = $_POST['street'];
-    $_SESSION['streetnumber'] = $_POST['streetnumber'];
-    $_SESSION['city'] = $_POST['city'];
-    $_SESSION['zipcode'] = $_POST['zipcode'];
+    $email = $_SESSION['email'] = $_POST['email'];
+    $street = $_SESSION['street'] = $_POST['street'];
+    $streetnumber = $_SESSION['streetnumber'] = $_POST['streetnumber'];
+    $city = $_SESSION['city'] = $_POST['city'];
+    $zipcode = $_SESSION['zipcode'] = $_POST['zipcode'];
 
     // Validation required fields
     if (!empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && !empty($_POST['email']) && isset($_POST['products'])) {
@@ -76,13 +91,13 @@ if (isset($_POST['submit'])) {
         // Validate zipcode
         if (!preg_match($regexNumbersOnly, $zipcode)) {
 
-            $_SESSION['zipcode'] = "";
+            $zipcode = "";
             echo '<div class="alert alert-warning" role="alert"> Please enter a valid zipcode! (Only numbers allowed)  </div>';
 
             // Validate email
         } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-            $_SESSION['email'] = "";
+            $email = "";
             echo '<div class="alert alert-warning" role="alert"> Invalid email format, please enter a valid email. </div>';
 
             // When everthing is filled in correct
