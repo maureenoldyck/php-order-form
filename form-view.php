@@ -14,8 +14,11 @@
 <body>
 <?php // Navigation for when you need it ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand" href="">Bottled Up</a>
-    <ul class="nav">
+<a class="navbar-brand" href="">
+    <img src="./bottle.png" alt="" width="30" height="24">
+    Bottled Up
+</a>
+    <ul class="nav p-3">
         <li class="nav-item">
             <a class="nav-link active" href="?air=0">Order Air in a Bottle</a>
         </li>
@@ -24,7 +27,7 @@
         </li>
     </ul>
 </nav>
-<div class="container">
+<div class="container mt-3">
     <h1>Place your order</h1>
     <form method="post">
         <div class="form-row">
@@ -60,7 +63,7 @@
             </div>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="mt-3">
             <legend>Products</legend>
             <?php foreach ($products as $i => $product): ?>
                 <label>
@@ -70,7 +73,7 @@
             <?php endforeach; ?>
         </fieldset>
 
-        <button name="submit" type="submit" class="btn btn-primary">Order!</button>
+        <button name="submit" type="submit" class="btn btn-primary mt-3">Order!</button>
     </form>
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in air.</footer>
@@ -82,8 +85,9 @@
     }
     .alert {
         text-align: center;
+        padding: 50px;
+        margin: 0;
     }
-
 </style>
 </body>
 </html>

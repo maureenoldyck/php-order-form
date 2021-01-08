@@ -75,10 +75,6 @@ if ($_GET['air'] == 0 ) {
 
 
 // TODO: Refactor in seperate functions
-// TODO: Read about get variables and what you can do with it.
-// TODO: Find commented navigation and activate it. Tweak the content for your own store.
-// TODO: Make a second category of products, and provide a new array for this info.
-// TODO: The navigation should work as a toggle to switch between the two categories of products.
 // TODO: Save totalValue in browser
 
 if (isset($_POST['submit'])) {
