@@ -115,6 +115,11 @@
         font-family: 'Amatic SC', cursive;
         font-size: 45px;
     }
+    .order-confirmation {
+        margin: 0 auto;
+        text-align: left;
+        width: 50%;
+    }
 </style>
 </body>
 </html>
