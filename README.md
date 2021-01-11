@@ -27,3 +27,4 @@
 * Bootstrap
 * MAMP
 * Flaticon.com (for store icon)
+* Google Fonts
