@@ -111,11 +111,10 @@ if (isset($_POST['submit'])) {
             echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <hr> <h4 class="alert-heading"> Order confirmtation </h4> You\'ve ordered: </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
-                echo $products[$i]['name'] . '</br>';
+                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . '</br>';
                 $totalValue += ($products[$i]['price']);
             }
-
-            echo "To: " . $_POST['street'] . " " . $_POST['streetnumber'] . ", " . $_POST['city'] . " " .  $_POST['zipcode'] . "</p> </div>";
+            echo 'Order total: €' . $totalValue . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
         }
 
         // Error when user didn't select any products
