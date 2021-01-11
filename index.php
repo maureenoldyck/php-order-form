@@ -23,6 +23,7 @@ if (isset($_COOKIE['valueOrders'])) {
 }
 
 $orderTotal = 0;
+$regexNumbersOnly = "/^[0-9]*$/";
 
 // if loop to get variables (if session is set or not)
 if ($_SESSION) {
@@ -94,10 +95,6 @@ if (isset($_POST['submit'])) {
 
     // Validation required fields
     if (!empty($email) && !empty($street) && !empty($streetnumber) && !empty($city) && !empty($zipcode) && isset($_POST['products'])) {
-
-        $zipcode = $_POST['zipcode'];
-        $regexNumbersOnly = "/^[0-9]*$/";
-        $email = $_POST['email'];
 
         // Validate zipcode
         if (!preg_match($regexNumbersOnly, $zipcode)) {
