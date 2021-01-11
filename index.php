@@ -116,8 +116,10 @@ if (isset($_POST['submit'])) {
             echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <hr> <h4 class="alert-heading"> Order confirmtation </h4> <b> You\'ve ordered: </b> </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
-                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . '</br>';
-                $orderTotal += ($products[$i]['price']);
+                // Specify the quanity of the ordered products
+                $quantity = $_POST['quantity'][$i];
+                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . ' - Quantity : ' . $quantity .'</br>';
+                $orderTotal += ($products[$i]['price']) * $quantity;
             }
 
             echo '<b> Order total: </b> €' . $orderTotal . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
@@ -147,3 +149,4 @@ if (isset($_POST['submit'])) {
 
 
 require 'form-view.php';
+
