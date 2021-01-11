@@ -116,12 +116,14 @@ if (isset($_POST['submit'])) {
 
             //Order confirmation 
 
-            echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <hr> <h4 class="alert-heading"> Order confirmtation </h4> You\'ve ordered: </br> <p>';
+            echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <hr> <h4 class="alert-heading"> Order confirmtation </h4> <b> You\'ve ordered: </b> </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
                 echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . '</br>';
                 $orderTotal += ($products[$i]['price']);
             }
+
+            echo '<b> Order total: </b> €' . $orderTotal . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
 
             //If cookie is not created create cookie for total order value of site --> to fill in totalvalue in footer
             if (!isset($_COOKIE['valueOrders'])) {
@@ -132,8 +134,6 @@ if (isset($_POST['submit'])) {
                 $totalValue += $orderTotal;
                 setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
             }
-
-            echo 'Order total: €' . $orderTotal . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
         }
 
         // Error when user didn't select any products
