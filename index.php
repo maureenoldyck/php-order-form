@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
                 $orderTotal += ($products[$i]['price']);
             }
 
-            //If cookie is not created create cookie for total order value of site 
+            //If cookie is not created create cookie for total order value of site --> to fill in totalvalue in footer
             if (!isset($_COOKIE['valueOrders'])) {
                 setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
                 $totalValue = $_COOKIE['valueOrders'];
@@ -147,10 +147,6 @@ if (isset($_POST['submit'])) {
         echo '<div class="alert alert-warning" role="alert"> Please fill in all required fields!  </div>';
     }
 }
-
-
-     
-
 
 
 require 'form-view.php';
