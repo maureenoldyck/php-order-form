@@ -14,6 +14,8 @@ session_set_cookie_params(0);
 session_start();
 
 // Global variables 
+
+// if loop to get global variable for total value (if a cookie is set or not)
 if (isset($_COOKIE['valueOrders'])) {
     $totalValue = $_COOKIE['valueOrders'];
 } else {
@@ -22,7 +24,7 @@ if (isset($_COOKIE['valueOrders'])) {
 
 $orderTotal = 0;
 
-
+// if loop to get variables (if session is set or not)
 if ($_SESSION) {
     $email = $_SESSION['email'];
     $street = $_SESSION['street'];
@@ -121,6 +123,7 @@ if (isset($_POST['submit'])) {
                 $orderTotal += ($products[$i]['price']);
             }
 
+            //If cookie is not created create cookie for total order value of site 
             if (!isset($_COOKIE['valueOrders'])) {
                 setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
                 $totalValue = $_COOKIE['valueOrders'];
