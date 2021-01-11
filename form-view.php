@@ -83,10 +83,15 @@
                 </label> <br/>
             <?php endforeach; ?>
         </fieldset>
-
+        <legend class="mt-3"> <h1> Express shipping - €5 for delivery in 45min </h1> </legend>
+        <input type="radio" id="normal" name="expressShipping" value="0">
+        <label for="normal">No</label>
+        <input type="radio" id="express" name="expressShipping" value="5">
+        <label for="express">Yes</label>
+        <br>
         <button name="submit" type="submit" class="btn btn-primary mt-3">Order!</button>
     </form>
-
+    
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> and <strong> <?php echo $orders ?></strong> products in Bottled Up. </footer>
 </div>
 

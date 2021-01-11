@@ -91,7 +91,7 @@ if (empty($_GET) || $_GET['air'] == 0) {
 
 
 // TODO: Refactor in seperate functions
-// TODO: Include the most popular product (by this user) and amount of products bought by this user.
+// TODO: Include the most popular product (by this user).
 // TODO: Show the expected delivery time in the confirmation message (2h by default).
 // TODO: A user can opt for express delivery (5$ for delivery in 45min).
 // TODO: Check what you can do for validation with html and JS. Use this to improve your validation.
@@ -103,6 +103,8 @@ if (isset($_POST['submit'])) {
     $streetnumber = $_SESSION['streetnumber'] = $_POST['streetnumber'];
     $city = $_SESSION['city'] = $_POST['city'];
     $zipcode = $_SESSION['zipcode'] = $_POST['zipcode'];
+    $expressShipping = $_POST['expressShipping'];
+    $deliveryTime;
 
     // Validation required fields
     if (!empty($email) && !empty($street) && !empty($streetnumber) && !empty($city) && !empty($zipcode) && isset($_POST['products'])) {
@@ -124,16 +126,31 @@ if (isset($_POST['submit'])) {
 
             //Order confirmation 
 
-            echo '<div class="alert alert-success" role="alert"> <h1> Thank you for your order! </h1> <hr> <h4 class="alert-heading"> Order confirmtation </h4> <b> You\'ve ordered: </b> </br> <p>';
+            echo '<div class="alert alert-success" role="alert"> <h1> Thank you for your order! </h1> <hr> <h4 class="alert-heading"> Order confirmtation </h4> <div class="order-confirmation"> <b> You\'ve ordered: </b> </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
                 // Specify the quanity of the ordered products
                 $quantity = $_POST['quantity'][$i];
-                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . ' - Quantity : ' . $quantity .'</br>';
+                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . ' - Quantity: ' . $quantity .'</br>';
                 $orderTotal += ($products[$i]['price']) * $quantity;
             }
 
-            echo '<b> Order total: </b> €' . $orderTotal . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
+            // Add expresshipping price to ordertotal
+            $orderTotal += $expressShipping; 
+
+            // If loop to add shipping in order confirmation
+            if ($expressShipping == 0) {
+                $deliveryTime = '2 hours';
+                $shipping = 'No';
+            } else {
+                $deliveryTime = '45 minutes';
+                $shipping = 'Yes - €5';
+            }
+
+            echo '<b> Express Shipping: </b> ' . $shipping . '</br>
+            <b> Order total: </b> €' . $orderTotal . '</br> 
+            <b> To: </b>' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . '</br>
+            Your order is expected to be deliverd in <b>' . $deliveryTime . '! </b> </p> </div> </div>';
 
             //Total value: If cookie is not created create cookie for total order value of site
             if (!isset($_COOKIE['valueOrders'])) {
