@@ -14,7 +14,14 @@ session_set_cookie_params(0);
 session_start();
 
 // Global variables 
-$totalValue = 0;
+if (isset($_COOKIE['valueOrders'])) {
+    $totalValue = $_COOKIE['valueOrders'];
+} else {
+    $totalValue = 0;
+}
+
+$orderTotal = 0;
+
 
 if ($_SESSION) {
     $email = $_SESSION['email'];
@@ -74,7 +81,6 @@ if (empty($_GET) || $_GET['air'] == 0) {
 
 
 // TODO: Refactor in seperate functions
-// TODO: Save totalValue as cookie
  
 if (isset($_POST['submit'])) {
 
@@ -112,9 +118,19 @@ if (isset($_POST['submit'])) {
 
             foreach ($_POST['products'] as $i => $product) {
                 echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . '</br>';
-                $totalValue += ($products[$i]['price']);
+                $orderTotal += ($products[$i]['price']);
             }
-            echo 'Order total: €' . $totalValue . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
+
+            if (!isset($_COOKIE['valueOrders'])) {
+                setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
+                $totalValue = $_COOKIE['valueOrders'];
+                $totalValue += $orderTotal;
+            } else {
+                $totalValue += $orderTotal;
+                setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
+            }
+
+            echo 'Order total: €' . $orderTotal . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
         }
 
         // Error when user didn't select any products
@@ -129,6 +145,8 @@ if (isset($_POST['submit'])) {
     }
 }
 
+
+     
 
 
 
