@@ -75,7 +75,7 @@ if (empty($_GET) || $_GET['air'] == 0) {
 
 // TODO: Refactor in seperate functions
 // TODO: Save totalValue as cookie
-
+ 
 if (isset($_POST['submit'])) {
 
     $email = $_SESSION['email'] = $_POST['email'];
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
     $zipcode = $_SESSION['zipcode'] = $_POST['zipcode'];
 
     // Validation required fields
-    if (!empty($_POST['street']) && !empty($_POST['streetnumber']) && !empty($_POST['city']) && !empty($_POST['zipcode']) && !empty($_POST['email']) && isset($_POST['products'])) {
+    if (!empty($email) && !empty($street) && !empty($streetnumber) && !empty($city) && !empty($zipcode) && isset($_POST['products'])) {
 
         $zipcode = $_POST['zipcode'];
         $regexNumbersOnly = "/^[0-9]*$/";
