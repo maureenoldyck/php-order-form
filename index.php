@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
 
             //Order confirmation 
 
-            echo '<div class="alert alert-success" role="alert"> <h3> Thank you for your order! </h3> <hr> <h4 class="alert-heading"> Order confirmtation </h4> <b> You\'ve ordered: </b> </br> <p>';
+            echo '<div class="alert alert-success" role="alert"> <h1> Thank you for your order! </h1> <hr> <h4 class="alert-heading"> Order confirmtation </h4> <b> You\'ve ordered: </b> </br> <p>';
 
             foreach ($_POST['products'] as $i => $product) {
                 // Specify the quanity of the ordered products

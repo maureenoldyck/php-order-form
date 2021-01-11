@@ -7,6 +7,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css"
           rel="stylesheet"/>
     <title>Your fancy store</title>
@@ -15,8 +17,8 @@
 <?php // Navigation for when you need it ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <a class="navbar-brand" href="">
-    <img src="./bottle.png" alt="" width="30" height="24">
-    Bottled Up
+    <img src="./bottle.png" alt="" width="40" height="34">
+     Bottled Up
 </a>
     <ul class="nav p-3">
         <li class="nav-item">
@@ -39,7 +41,7 @@
         </div>
 
         <fieldset>
-            <legend>Address</legend>
+            <legend> <h1> Address </h1> </legend>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -64,7 +66,7 @@
         </fieldset>
 
         <fieldset class="mt-3">
-            <legend>Products</legend>
+            <legend> <h1> Products </h1> </legend>
             <?php foreach ($products as $i => $product): ?>
                 <label>
 					<?php // <?p= is equal to <?php echo ?>
@@ -89,13 +91,24 @@
 </div>
 
 <style>
+    body {
+        background-color: #C3D6F2;
+    }
     footer {
         text-align: center;
+        margin-bottom: 20px;
     }
     .alert {
         text-align: center;
         padding: 50px;
         margin: 0;
+    }
+    h1 {
+        font-family: 'Amatic SC', cursive;
+    }
+    .navbar-brand {
+        font-family: 'Amatic SC', cursive;
+        font-size: 45px;
     }
 </style>
 </body>
