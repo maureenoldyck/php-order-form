@@ -84,7 +84,7 @@
             <?php endforeach; ?>
         </fieldset>
         <legend class="mt-3"> <h1> Express shipping - €5 for delivery in 45min </h1> </legend>
-        <input type="radio" id="normal" name="expressShipping" value="0">
+        <input type="radio" id="normal" name="expressShipping" value="0" checked>
         <label for="normal">No</label>
         <input type="radio" id="express" name="expressShipping" value="5">
         <label for="express">Yes</label>
@@ -106,7 +106,7 @@
     .alert {
         text-align: center;
         padding: 50px;
-        margin: 0;
+        margin: 0 auto;
     }
     h1 {
         font-family: 'Amatic SC', cursive;

@@ -92,8 +92,6 @@ if (empty($_GET) || $_GET['air'] == 0) {
 
 // TODO: Refactor in seperate functions
 // TODO: Include the most popular product (by this user).
-// TODO: Show the expected delivery time in the confirmation message (2h by default).
-// TODO: A user can opt for express delivery (5$ for delivery in 45min).
 // TODO: Check what you can do for validation with html and JS. Use this to improve your validation.
  
 if (isset($_POST['submit'])) {
