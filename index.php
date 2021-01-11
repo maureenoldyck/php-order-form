@@ -22,6 +22,13 @@ if (isset($_COOKIE['valueOrders'])) {
     $totalValue = 0;
 }
 
+// if loop to get global variable for total value orders (if a cookie is set or not)
+if (isset($_COOKIE['quantityOrders'])) {
+    $orders = $_COOKIE['quantityOrders'];
+} else {
+    $orders = 0;
+}
+
 $orderTotal = 0;
 $regexNumbersOnly = "/^[0-9]*$/";
 
@@ -128,15 +135,28 @@ if (isset($_POST['submit'])) {
 
             echo '<b> Order total: </b> €' . $orderTotal . '</br> To: ' . $street . ' ' . $streetnumber . ', ' . $city . ' ' .  $zipcode . "</p> </div>";
 
-            //If cookie is not created create cookie for total order value of site --> to fill in totalvalue in footer
+            //Total value: If cookie is not created create cookie for total order value of site
             if (!isset($_COOKIE['valueOrders'])) {
-                setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
-                $totalValue = $_COOKIE['valueOrders'];
                 $totalValue += $orderTotal;
+                setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
             } else {
                 $totalValue += $orderTotal;
                 setcookie('valueOrders', strval($totalValue), time() + (86400 * 365), "/");
             }
+
+            //Quantity orders: If cookie is not created create cookie for total orders
+            if (!isset($_COOKIE['quantityOrders'])) {
+                foreach ($_POST['products'] as $i => $product) {
+                    $orders += $_POST['quantity'][$i];
+                }
+                setcookie('quantityOrders', strval($orders), time() + (86400 * 365), "/");    
+            } else {
+                foreach ($_POST['products'] as $i => $product) {
+                    $orders += $_POST['quantity'][$i];
+                }
+                setcookie('quantityOrders', strval($orders), time() + (86400 * 365), "/");
+            }
+
         }
 
         // Error when user didn't select any products

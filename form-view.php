@@ -59,7 +59,7 @@
                     <input type="text" id="city" name="city" class="form-control" value="<?php echo $city;?>">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="zipcode">Zipcode</label>
+                    <label for="zipcode">Zipcode:</label>
                     <input type="text" id="zipcode" name="zipcode" class="form-control" value="<?php echo $zipcode;?>">
                 </div>
             </div>
@@ -87,7 +87,7 @@
         <button name="submit" type="submit" class="btn btn-primary mt-3">Order!</button>
     </form>
 
-    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in Bottled Up.</footer>
+    <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> and <strong> <?php echo $orders ?></strong> products in Bottled Up. </footer>
 </div>
 
 <style>
