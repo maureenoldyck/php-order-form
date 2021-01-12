@@ -28,3 +28,8 @@
 * MAMP
 * Flaticon.com (for store icon)
 * Google Fonts
+
+
+### 💭 Comments about this task: 
+
+This was my first time really coding with PHP, so many mistakes were made. My code in this project is not the best way of writing PHP and the incorporation of the PHP code into the HTML is also not well implemented. These are the points I mainly want to focus on for my next PHP project. 

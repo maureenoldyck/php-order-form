@@ -90,10 +90,12 @@ if (empty($_GET) || $_GET['air'] == 0) {
 } 
 
 
-// TODO: Refactor in seperate functions
-// TODO: Include the most popular product (by this user).
-// TODO: Check what you can do for validation with html and JS. Use this to improve your validation.
- 
+// TODO: Refactor in seperate functions and call them in html!!!
+// TODO: Incorporate more php code into html 
+
+
+
+
 if (isset($_POST['submit'])) {
 
     $email = $_SESSION['email'] = $_POST['email'];
