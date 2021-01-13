@@ -13,6 +13,8 @@ error_reporting(E_ALL);
 session_set_cookie_params(0);
 session_start();
 
+require './classes/Product.php';
+
 // Global variables 
 
 // if loop to get global variable for total value (if a cookie is set or not)
@@ -60,8 +62,9 @@ function whatIsHappening()
     var_dump($_SESSION);
 }
 
+// TODO: Store information GET so we can both buy air and water at the same time
 // Toggle to different products
-if (empty($_GET) || $_GET['air'] == 0) {
+/* if (empty($_GET) || $_GET['air'] == 0) {
     $products = [
         ['name' => 'Healthy Mountain Air', 'price' => 25],
         ['name' => 'Healthy Forest Air', 'price' => 20],
@@ -87,9 +90,37 @@ if (empty($_GET) || $_GET['air'] == 0) {
         ['name' => 'Water from Ninove', 'price' => 2.5],
         ['name' => 'Polluted water', 'price' => 2.5],
     ];
-} 
+} */
 
 
+
+if (empty($_GET) || $_GET['air'] == 0) {
+    $products = [
+        new Product('Healthy Mountain Air', 25),
+        new Product('Healthy Forest Air', 20),
+        new Product('Healthy Ocean Air', 15),
+        new Product('Mysterious Air', 22.5),
+        new Product('The Air after it Rained', 8.5),
+        new Product('The Air of a Sunny Day', 20),
+        new Product('Air from the North Sea', 5.5),
+        new Product('Air from the Bahamas', 50),
+        new Product('Air from Ninove', 2.5),
+        new Product('Smoke', 2.5),
+    ];
+} else if (($_GET['air']) == 1) {
+    $products = [
+        new Product('Healthy Mountain Water', 25),
+        new Product('Healthy Forest Water', 20),
+        new Product('Healthy Ocean Water', 15),
+        new Product('Mysterious Water', 22.5),
+        new Product('Rain Water', 8.5),
+        new Product('The Water of a Sunny Day', 20),
+        new Product('Water from the North Sea', 5.5),
+        new Product('Water from the Bahamas', 50),
+        new Product('Water from Ninove', 2.5),
+        new Product('Polluted water', 2.5),
+    ];
+};
 // TODO: Refactor in seperate functions and call them in html!!!
 // TODO: Incorporate more php code into html 
 
@@ -131,12 +162,12 @@ if (isset($_POST['submit'])) {
             foreach ($_POST['products'] as $i => $product) {
                 // Specify the quanity of the ordered products
                 $quantity = $_POST['quantity'][$i];
-                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . ' - Quantity: ' . $quantity .'</br>';
+                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . ' - Quantity: ' . $quantity . '</br>';
                 $orderTotal += ($products[$i]['price']) * $quantity;
             }
 
             // Add expresshipping price to ordertotal
-            $orderTotal += $expressShipping; 
+            $orderTotal += $expressShipping;
 
             // If loop to add shipping in order confirmation
             if ($expressShipping == 0) {
@@ -166,14 +197,13 @@ if (isset($_POST['submit'])) {
                 foreach ($_POST['products'] as $i => $product) {
                     $orders += $_POST['quantity'][$i];
                 }
-                setcookie('quantityOrders', strval($orders), time() + (86400 * 365), "/");    
+                setcookie('quantityOrders', strval($orders), time() + (86400 * 365), "/");
             } else {
                 foreach ($_POST['products'] as $i => $product) {
                     $orders += $_POST['quantity'][$i];
                 }
                 setcookie('quantityOrders', strval($orders), time() + (86400 * 365), "/");
             }
-
         }
 
         // Error when user didn't select any products
@@ -190,4 +220,3 @@ if (isset($_POST['submit'])) {
 
 
 require 'form-view.php';
-
