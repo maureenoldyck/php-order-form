@@ -162,8 +162,8 @@ if (isset($_POST['submit'])) {
             foreach ($_POST['products'] as $i => $product) {
                 // Specify the quanity of the ordered products
                 $quantity = $_POST['quantity'][$i];
-                echo $products[$i]['name'] . ' - € ' . $products[$i]['price'] . ' - Quantity: ' . $quantity . '</br>';
-                $orderTotal += ($products[$i]['price']) * $quantity;
+                echo $products[$i]->name . ' - € ' . $products[$i]->price . ' - Quantity: ' . $quantity . '</br>';
+                $orderTotal += ($products[$i]->price) * $quantity;
             }
 
             // Add expresshipping price to ordertotal
