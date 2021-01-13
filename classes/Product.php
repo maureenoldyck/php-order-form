@@ -8,11 +8,11 @@ class Product
     function __construct($functionName, $functionPrice)
     {
         $this->name = $functionName;
-        $this->price = $functionPrice;
+        $this->price = $this->numberFormat($functionPrice);
     }
 
-    function numberFormat($price)
+    public function numberFormat($price)
     {
-        $this->price = number_format($price, 2);
+       return number_format($price, 2);
     }
 };
