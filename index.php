@@ -92,33 +92,31 @@ function whatIsHappening()
     ];
 } */
 
-
-
 if (empty($_GET) || $_GET['air'] == 0) {
     $products = [
-        new Product('Healthy Mountain Air', 25),
-        new Product('Healthy Forest Air', 20),
-        new Product('Healthy Ocean Air', 15),
-        new Product('Mysterious Air', 22.5),
-        new Product('The Air after it Rained', 8.5),
-        new Product('The Air of a Sunny Day', 20),
-        new Product('Air from the North Sea', 5.5),
-        new Product('Air from the Bahamas', 50),
-        new Product('Air from Ninove', 2.5),
-        new Product('Smoke', 2.5),
+        $product1 = new Product('Healthy Mountain Air', 25),
+        $product2 = new Product('Healthy Forest Air', 20),
+        $product3 = new Product('Healthy Ocean Air', 15),
+        $product4 = new Product('Mysterious Air', 22.5),
+        $product5 = new Product('The Air after it Rained', 8.5),
+        $product6 = new Product('The Air of a Sunny Day', 20),
+        $product7 = new Product('Air from the North Sea', 5.5),
+        $product8 = new Product('Air from the Bahamas', 50),
+        $product9 = new Product('Air from Ninove', 2.5),
+        $product10 = new Product('Smoke', 2.5),
     ];
 } else if (($_GET['air']) == 1) {
     $products = [
-        new Product('Healthy Mountain Water', 25),
-        new Product('Healthy Forest Water', 20),
-        new Product('Healthy Ocean Water', 15),
-        new Product('Mysterious Water', 22.5),
-        new Product('Rain Water', 8.5),
-        new Product('The Water of a Sunny Day', 20),
-        new Product('Water from the North Sea', 5.5),
-        new Product('Water from the Bahamas', 50),
-        new Product('Water from Ninove', 2.5),
-        new Product('Polluted water', 2.5),
+        $product1 = new Product('Healthy Mountain Water', 25),
+        $product2 = new Product('Healthy Forest Water', 20),
+        $product3 = new Product('Healthy Ocean Water', 15),
+        $product4 = new Product('Mysterious Water', 22.5),
+        $product5 = new Product('Rain Water', 8.5),
+        $product6 = new Product('The Water of a Sunny Day', 20),
+        $product7 = new Product('Water from the North Sea', 5.5),
+        $product8 = new Product('Water from the Bahamas', 50),
+        $product9 = new Product('Water from Ninove', 2.5),
+        $product10 = new Product('Polluted water', 2.5),
     ];
 };
 // TODO: Refactor in seperate functions and call them in html!!!
